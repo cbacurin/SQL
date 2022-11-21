@@ -1,17 +1,50 @@
-CREATE TABLE store (id INTEGER PRIMARY KEY, item TEXT, size TEXT, quantity INTEGER, price INTEGER);
-INSERT INTO store VALUES (1, "Cargo Shorts", "XL", 15, 1);
-INSERT INTO store VALUES (2, "Baseball hat", "one size", 3, 12);
-INSERT INTO store VALUES (3, "SOCKS", "S", 200, 3);
-INSERT INTO store VALUES (4, "Underwear", "M", 33, 2);
-INSERT INTO store VALUES (5, "Bra", "L", 21, 3);
-INSERT INTO store VALUES (6, "Ascot", "one size", 34, 2);
-INSERT INTO store VALUES (7, "toaster", "N/A", 15, 7);
-INSERT INTO store VALUES (8, "binoculars", "N/A", 2, 4);
-INSERT INTO store VALUES (11, "dress", "XXL", 4, 4);
-INSERT INTO store VALUES (12, "headband", "N/A", 43, 3);
-INSERT INTO store VALUES (13, "keyboard", "N/A", 7, 44);
-INSERT INTO store VALUES (14, "campfire", "N/A", 9, 3);
-INSERT INTO store VALUES (15, "pants", "XXXXL", 1, 4);
+CREATE TABLE store (id INTEGER PRIMARY KEY AUTOINCREMENT, item TEXT, category TEXT, size TEXT, quantity INTEGER,aisle INTEGER, price INTEGER);
+INSERT INTO store (item, category, quantity, aisle, price) VALUES ("refrigerator", "appliances",4, 3, 1500);
+INSERT INTO store (item, category, quantity,aisle, price) VALUES ("washing machine", "appliances",3, 2, 800);
+INSERT INTO store (item, category, quantity,aisle, price) VALUES ("oven", "appliances",4, 3, 800);
+INSERT INTO store (item, category, quantity,aisle, price) VALUES ("microwave", "appliances",10, 3, 75);
+INSERT INTO store (item, category, quantity,aisle, price) VALUES ("vaccuum", "appliances",15, 2, 800);
+INSERT INTO store (item, category, quantity,aisle, price) VALUES ("oven", "appliances",4, 3, 950);
+INSERT INTO store (item, category, quantity,aisle, price) VALUES ("garbage disposal", "appliances",7, 2, 125);
+
+
+INSERT INTO store (item, category, size, quantity,aisle, price) VALUES ("peacoat", "clothing", "L", 24, 14, 75);
+INSERT INTO store (item, category,size, quantity,aisle, price) VALUES ("jeans","clothing","12", 10, 13, 50);
+INSERT INTO store (item, category,size, quantity,aisle, price) VALUES ("pantyhose","clothing","M", 22, 15, 15);
+INSERT INTO store (item, category,size, quantity,aisle, price) VALUES ("socks","clothing","L", 15, 15, 8);
+INSERT INTO store (item, category,size, quantity,aisle, price) VALUES ("underwear","clothing","XL", 6, 15, 7);
+INSERT INTO store (item, category,size, quantity,aisle, price) VALUES ("sweater","clothing","S", 4, 13, 25);
+INSERT INTO store (item, category,size, quantity,aisle, price) VALUES ("jacket","clothing","L", 5, 14, 40);
+
+
+INSERT INTO store (item, category, quantity, aisle, price) VALUES ("chainsaw", "tools",8, 7, 500);
+INSERT INTO store (item, category, quantity,aisle, price) VALUES ("power washer", "tools",14, 7, 800);
+INSERT INTO store (item, category, quantity,aisle, price) VALUES ("hammer", "tools",9, 5, 10);
+INSERT INTO store (item, category, quantity,aisle, price) VALUES ("screw driver", "tools",10, 5, 8);
+INSERT INTO store (item, category, quantity,aisle, price) VALUES ("pliers", "tools",15, 5, 15);
+INSERT INTO store (item, category, quantity,aisle, price) VALUES ("monkey wrench", "tools",4, 4, 9);
+INSERT INTO store (item, category, quantity,aisle, price) VALUES ("allen wrench set", "tools",7, 4, 25);
+
+INSERT INTO store (item, category, quantity, aisle, price) VALUES ("pillow", "home goods",11, 17, 25);
+INSERT INTO store (item, category, quantity, aisle, price) VALUES ("duvet cover", "home goods",7, 17, 25);
+INSERT INTO store (item, category, quantity, aisle, price) VALUES ("sheets", "home goods",26, 17, 75);
+INSERT INTO store (item, category, quantity, aisle, price) VALUES ("lamp shade", "home goods",4, 18, 45);
+INSERT INTO store (item, category, quantity, aisle, price) VALUES ("coffee table", "home goods",3, 18, 125);
+INSERT INTO store (item, category, quantity, aisle, price) VALUES ("curtains", "home goods",8, 16, 35);
+INSERT INTO store (item, category, quantity, aisle, price) VALUES ("blanket", "home goods",11, 17, 25);
+INSERT INTO store (item, category, quantity, aisle, price) VALUES ("rug", "home goods",4, 19, 200);
+
 SELECT * FROM store;
-SELECT * FROM store WHERE price > 4 GROUP BY price;
-SELECT SUM(quantity) FROM store; 
+SELECT * FROM store WHERE category = "home goods" ORDER BY aisle desc;
+
+
+SELECT category, AVG(price) as avg_price FROM store
+GROUP BY category
+HAVING avg_price >70;
+
+SELECT category, SUM(quantity) as inventory_total FROM store 
+GROUP BY category 
+    
+
+
+
