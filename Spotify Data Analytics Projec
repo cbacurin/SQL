@@ -1,0 +1,81 @@
+/* For this project, I downloaded a dataset called "Spotify top 50 songs in 2021". I created a table in SQLiteStudio  to load the spotify data into */
+
+
+CREATE TABLE BIT_DB.Spotifydata (
+id integer PRIMARY KEY,
+artist_name varchar NOT NULL,
+track_name varchar NOT NULL,
+track_id varchar NOT NULL,
+popularity integer NOT NULL,
+danceability decimal(4,3) NOT NULL,
+energy decimal(4,3) NOT NULL,
+song_key integer NOT NULL,
+loudness decimal(5,3) NOT NULL,
+song_mode integer NOT NULL,
+speechiness decimal(5,4) NOT NULL,
+acousticness decimal(6,5) NOT NULL,
+instrumentalness text NOT NULL,
+liveness decimal(5,4) NOT NULL,
+valence decimal(4,3) NOT NULL,
+tempo decimal(6,3) NOT NULL,
+duration_ms integer NOT NULL,
+time_signature integer NOT NULL )
+;
+
+/* First, I wanted to find the top 10 most popular artists from this dataset */
+
+Select artist_name,track_name, popularity FROM BIT_DB.Spotifydata
+ORDER BY popularity desc
+limit 10;
+
+
+/* I also wanted to find the average popularity, danceability and energy and grouped the data by the artist and song name */
+
+SELECT artist_name, track_name, avg(popularity), avg(danceability), avg(energy)
+FROM BIT_DB.Spotifydata
+GROUP BY artist_name, track_name;
+
+
+/* Next, I wanted to find the the quiestest and loudest song */
+Select artist_name, track_name, loudness
+FROM BIT_DB.Spotifydata
+Group by artist_name
+Order by loudness desc;
+
+Select artist_name, track_name, loudness
+FROM BIT_DB.Spotifydata
+Group by artist_name
+Order by loudness asc;
+
+
+/* These next two queries allowed me to find the shortest and longest songs in the dataset */ 
+Select artist_name, track_name, duration_ms
+FROM BIT_DB.Spotifydata
+Group by artist_name
+Order by duration_ms desc; 
+
+Select artist_name, track_name, duration_ms
+FROM BIT_DB.Spotifydata
+Group by artist_name
+Order by duration_ms asc; 
+
+
+
+/* Next I wanted to list each artist and the number of songs they had in the dataset */
+Select artist_name, count(track_name)
+FROM BIT_DB.Spotifydata
+Group by artist_name;
+
+
+/* With this Query, I wanted to find all the songs in the dataset by Doja Cat and then list them in order of decreasing popularity */ 
+Select artist_name, track_name, popularity
+FROM BIT_DB.Spotifydata
+WHERE artist_name = 'Doja Cat'
+Order by popularity desc;
+
+
+/* Finally, I wanted to find all artists that had more than two songs in the dataset and grouped them by artist */ 
+Select artist_name, track_name, count(track_name) AS Total_songs 
+FROM BIT_DB.Spotifydata
+Group by artist_name
+HAVING count(track_name) >2;
