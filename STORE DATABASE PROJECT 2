@@ -20,16 +20,16 @@ INSERT into store_database VALUES (14, "flashlight", "hardware", 25, 12, 12);
 INSERT into store_database VALUES (15, "speakers", "electronics", 5, 175, 10);
 
 
-/* Next, I used the wildcard operator to select and view all data in the table */
+/* I used the wildcard operator to select and view all columns and rows in the table */
 select * from store_database;
 
-
+/* I selected the item names, category, and price, ordering by price and category */
 select item, category, price from store_database
 order by category asc, price asc;
 
-select category, quantity, price from store_database;
 
-
+/* Finally, I wanted to view the total number of inventory in each category, the average price per item in each category, and the Total value of all 
+inventory in each category */
 select category, SUM(quantity) as Total_Quantity, ROUND(AVG(price),2) as AVG_Price, SUM(quantity*price) as Total_Value   from store_database group by category;  
 
 
