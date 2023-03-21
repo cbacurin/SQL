@@ -1,0 +1,38 @@
+/* For this project, I was tasked with creating a database for a store, which should have at least 15 different items. The table was required to have at least 
+5 columns of data. Then I was tastked with using select satements to order items by price and show statistics about the items */
+
+/* First I created the sql table and inserted data into the table */ 
+CREATE table store_database (id INTEGER PRIMARY KEY , item TEXT, category TEXT, quantity INTEGER, price INTEGER, aisle INTEGER);
+INSERT INTO store_database (id, item, category, quantity, price, aisle) VALUES (1,"Ipad", "electronics", 8, 700, 10);
+INSERT INTO store_database (id, item, category, quantity, price, aisle) VALUES (2, "hammer", "hardware", 10, 25, 12);
+INSERT INTO store_database VALUES (3, "toothbrush", "toiletries", 30, 7, 8);
+INSERT into store_database VALUES (4, "blanket", "homegoods", 15, 40, 3);
+INSERT into store_database VALUES (5, "baking sheet", "kitchen", 10, 20, 4);
+INSERT into store_database VALUES (6, "towel", "homegoods", 75, 30, 3);
+INSERT into store_database VALUES (7, "volley ball", "sportingoods", 5, 30, 6);
+INSERT into store_database VALUES (8, "golf balls", "sportingoods", 75, 20, 6);
+INSERT into store_database VALUES (9, "hockey puck", "sportingoods", 22, 20, 6);
+INSERT into store_database VALUES (10, "shammy", "automotive", 15, 9, 11);
+INSERT into store_database VALUES (11, "spark plugs", "automotive", 60, 25, 11);
+INSERT into store_database VALUES (12, "antifreeze", "automotive", 19, 12, 11);
+INSERT into store_database VALUES (13, "snow shovel", "hardware", 5, 25, 12);
+INSERT into store_database VALUES (14, "flashlight", "hardware", 25, 12, 12);
+INSERT into store_database VALUES (15, "speakers", "electronics", 5, 175, 10);
+
+
+/* Next, I used the wildcard operator to select and view all data in the table */
+select * from store_database;
+
+
+select item, category, price from store_database
+order by category asc, price asc;
+
+select category, quantity, price from store_database;
+
+
+select category, SUM(quantity) as Total_Quantity, ROUND(AVG(price),2) as AVG_Price, SUM(quantity*price) as Total_Value   from store_database group by category;  
+
+
+
+
+
